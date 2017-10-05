@@ -6,31 +6,35 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use AppBundle\Entity\Place;
 
 
 
 class PlaceController extends Controller 
 {
+    // code de getPlacesAction
+    
     /**
-     * @Route("/places", name="places_list")
+     * @Route("/places/{place_id}", name="places_one")
      * @Method({"GET"})
      */
-    public function getPlacesAction(Request $request)
+    public function getPlaceAction(Request $request)
     {
-        $places = $this->get('doctrine.orm.entity_manager')
+        $place = $this->get('doctrine.orm.entity_manager')
                 ->getRepository('AppBundle:Place')
-                ->findAll();
+                ->find($request->get('place_id'));
         /* @var $places Place[] */
         
-        $formated = [];
-        foreach ($places as $place) {
+        if (empty($place)) {
+            return new JsonResponse(['message' => 'Place not found'], Response::HTTP_NOT_FOUND);
+        }
             $formatted[] = [
                 'id' => $place->getId(),
                 'name' => $place->getName(),
                 'address' => $place->getAddress(),
             ];
-        }
+        
     return new JsonResponse($formatted);
     }
 }

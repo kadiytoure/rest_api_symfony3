@@ -117,27 +117,27 @@ class appDevDebugProjectContainerUrlMatcher extends Symfony\Bundle\FrameworkBund
             return array (  '_controller' => 'AppBundle\\Controller\\DefaultController::indexAction',  '_route' => 'homepage',);
         }
 
-        // places_list
-        if ('/places' === $pathinfo) {
+        // places_one
+        if (0 === strpos($pathinfo, '/places') && preg_match('#^/places/(?P<place_id>[^/]++)$#s', $pathinfo, $matches)) {
             if ('GET' !== $canonicalMethod) {
                 $allow[] = 'GET';
-                goto not_places_list;
+                goto not_places_one;
             }
 
-            return array (  '_controller' => 'AppBundle\\Controller\\PlaceController::getPlacesAction',  '_route' => 'places_list',);
+            return $this->mergeDefaults(array_replace($matches, array('_route' => 'places_one')), array (  '_controller' => 'AppBundle\\Controller\\PlaceController::getPlaceAction',));
         }
-        not_places_list:
+        not_places_one:
 
-        // users_list
-        if ('/users' === $pathinfo) {
+        // users_one
+        if (0 === strpos($pathinfo, '/users') && preg_match('#^/users/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
             if ('GET' !== $canonicalMethod) {
                 $allow[] = 'GET';
-                goto not_users_list;
+                goto not_users_one;
             }
 
-            return array (  '_controller' => 'AppBundle\\Controller\\UserController::getUsersAction',  '_route' => 'users_list',);
+            return $this->mergeDefaults(array_replace($matches, array('_route' => 'users_one')), array (  '_controller' => 'AppBundle\\Controller\\UserController::getUserAction',));
         }
-        not_users_list:
+        not_users_one:
 
         throw 0 < count($allow) ? new MethodNotAllowedException(array_unique($allow)) : new ResourceNotFoundException();
     }
