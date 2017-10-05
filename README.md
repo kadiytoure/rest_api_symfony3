@@ -1,2 +1,4 @@
-# rest_api_symfony3
-Creation of an api_rest with symfony 3;
+rest_api
+========
+
+A Symfony project created on October 5, 2017, 2:54 pm.

@@ -1,0 +1,7 @@
+fb556f,127.0.0.1,GET,http://localhost:8000/,1507217085,,200
+1dc949,127.0.0.1,GET,http://localhost:8000/rest_api_symfony3/,1507217109,2ac27d,200
+2ac27d,127.0.0.1,GET,http://localhost:8000/rest_api_symfony3/,1507217109,,404
+f4e128,127.0.0.1,GET,http://localhost:8000/places,1507217228,,200
+81d54f,127.0.0.1,GET,http://localhost:8000/places,1507217356,,200
+7d76c8,127.0.0.1,GET,http://localhost:8000/places,1507220487,,200
+490433,127.0.0.1,GET,http://localhost:8000/places,1507220557,,200
