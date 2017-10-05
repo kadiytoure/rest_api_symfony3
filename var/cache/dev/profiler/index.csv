@@ -5,3 +5,5 @@ f4e128,127.0.0.1,GET,http://localhost:8000/places,1507217228,,200
 81d54f,127.0.0.1,GET,http://localhost:8000/places,1507217356,,200
 7d76c8,127.0.0.1,GET,http://localhost:8000/places,1507220487,,200
 490433,127.0.0.1,GET,http://localhost:8000/places,1507220557,,200
+e7a91e,127.0.0.1,GET,http://localhost:8000/users,1507226570,,200
+90ef66,127.0.0.1,GET,http://localhost:8000/users,1507226581,,200

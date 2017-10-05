@@ -128,6 +128,17 @@ class appDevDebugProjectContainerUrlMatcher extends Symfony\Bundle\FrameworkBund
         }
         not_places_list:
 
+        // users_list
+        if ('/users' === $pathinfo) {
+            if ('GET' !== $canonicalMethod) {
+                $allow[] = 'GET';
+                goto not_users_list;
+            }
+
+            return array (  '_controller' => 'AppBundle\\Controller\\UserController::getUsersAction',  '_route' => 'users_list',);
+        }
+        not_users_list:
+
         throw 0 < count($allow) ? new MethodNotAllowedException(array_unique($allow)) : new ResourceNotFoundException();
     }
 }
